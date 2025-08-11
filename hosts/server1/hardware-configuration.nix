@@ -8,7 +8,7 @@
     [ (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
-  boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usbhid" "usb_storage" "sd_mod" ];
+  boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "sd_mod" ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
@@ -24,11 +24,6 @@
       options = [ "fmask=0077" "dmask=0077" ];
     };
 
-  fileSystems."/media/hdd2T" =
-    { device = "/dev/disk/by-uuid/08705904-67a6-421d-b2ec-50b3d58f074b";
-      fsType = "xfs";
-    };
-
   fileSystems."/media/nvme2T" =
     { device = "/dev/disk/by-uuid/7e487352-68c6-4cc9-b2e7-3acc85d18352";
       fsType = "xfs";
@@ -36,6 +31,16 @@
 
   fileSystems."/media/nvme1T" =
     { device = "/dev/disk/by-uuid/2a99b7ee-6738-4716-8bd0-a7462dff8a69";
+      fsType = "xfs";
+    };
+
+  fileSystems."/media/hdd2T" =
+    { device = "/dev/disk/by-uuid/08705904-67a6-421d-b2ec-50b3d58f074b";
+      fsType = "xfs";
+    };
+
+  fileSystems."/media/hdd1T" =
+    { device = "/dev/disk/by-uuid/63a36dba-74fd-421a-9775-5c4af4314b49";
       fsType = "xfs";
     };
 
@@ -51,7 +56,11 @@
   # networking.interfaces.enp1s0f0np0.useDHCP = lib.mkDefault true;
   # networking.interfaces.enp1s0f1np1.useDHCP = lib.mkDefault true;
   # networking.interfaces.enp5s0.useDHCP = lib.mkDefault true;
-
+  # networking.interfaces.sw0.useDHCP = lib.mkDefault true;
+  # networking.interfaces.sw0.2.useDHCP = lib.mkDefault true;
+  # networking.interfaces.sw0.3.useDHCP = lib.mkDefault true;
+  # networking.interfaces.sw0.4.useDHCP = lib.mkDefault true;
+  
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 }

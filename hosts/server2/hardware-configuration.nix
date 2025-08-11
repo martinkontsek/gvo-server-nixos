@@ -8,7 +8,7 @@
     [ (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
-  boot.initrd.availableKernelModules = [ "ahci" "xhci_pci" "ehci_pci" "uhci_hcd" "sd_mod" ];
+  boot.initrd.availableKernelModules = [ "ahci" "xhci_pci" "ehci_pci" "uhci_hcd" "usbhid" "sd_mod" ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
@@ -24,6 +24,11 @@
       options = [ "fmask=0077" "dmask=0077" ];
     };
 
+  fileSystems."/media/ssd1T" =
+    { device = "/dev/disk/by-uuid/221b16cd-177c-4dbd-b78a-45a415bb0372";
+      fsType = "xfs";
+    };
+
   fileSystems."/media/hdd500G" =
     { device = "/dev/disk/by-uuid/69a5598f-8145-41c4-85f6-3f75ac08bb67";
       fsType = "xfs";
@@ -34,13 +39,18 @@
       fsType = "xfs";
     };
 
-  fileSystems."/media/ssd1T" =
-    { device = "/dev/disk/by-uuid/221b16cd-177c-4dbd-b78a-45a415bb0372";
+  fileSystems."/media/hdd750G" =
+    { device = "/dev/disk/by-uuid/77298ab5-ab03-48ae-b26f-fc36f7f8a10b";
       fsType = "xfs";
     };
 
-  fileSystems."/media/hdd750G" =
-    { device = "/dev/disk/by-uuid/77298ab5-ab03-48ae-b26f-fc36f7f8a10b";
+  fileSystems."/media/ssd1T2" =
+    { device = "/dev/disk/by-uuid/37c04c89-2430-4bd3-8f70-f7164430ade4";
+      fsType = "xfs";
+    };
+
+  fileSystems."/media/ssd250G" =
+    { device = "/dev/disk/by-uuid/ffd79c05-535b-461e-ab42-045f0e0298d6";
       fsType = "xfs";
     };
 
@@ -53,15 +63,14 @@
   # still possible to use this option, but it's recommended to use it in conjunction
   # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
   networking.useDHCP = lib.mkDefault true;
-  # networking.interfaces.docker0.useDHCP = lib.mkDefault true;
   # networking.interfaces.eno1.useDHCP = lib.mkDefault true;
   # networking.interfaces.eno2.useDHCP = lib.mkDefault true;
   # networking.interfaces.eno49.useDHCP = lib.mkDefault true;
   # networking.interfaces.eno50.useDHCP = lib.mkDefault true;
-  # networking.interfaces.ovs-system.useDHCP = lib.mkDefault true;
   # networking.interfaces.sw0.useDHCP = lib.mkDefault true;
   # networking.interfaces.sw0.2.useDHCP = lib.mkDefault true;
   # networking.interfaces.sw0.3.useDHCP = lib.mkDefault true;
+  # networking.interfaces.sw0.4.useDHCP = lib.mkDefault true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;

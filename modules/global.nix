@@ -100,6 +100,9 @@
     nh
     duf
     git
+    python313
+    python313Packages.python-dotenv
+    _7zz    
   ];
 
   services.lldpd.enable = true;

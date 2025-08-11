@@ -12,6 +12,7 @@
       ../../modules/docker.nix
       ../../modules/libvirt.nix
       ../../modules/incus.nix
+      ../../modules/zabbix-agent.nix
     ];
 
   networking.hostName = "server1"; # Define your hostname.

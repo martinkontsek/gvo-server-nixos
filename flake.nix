@@ -22,6 +22,13 @@
         ]; 
       };
 
+      nas = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [
+          ./hosts/nas/configuration.nix
+        ]; 
+      };
+
     };
   };
 }

@@ -8,6 +8,7 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ../../modules/boot-efi.nix
       ../../modules/global.nix
       ../../modules/docker.nix
       ../../modules/libvirt.nix

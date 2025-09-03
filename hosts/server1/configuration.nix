@@ -37,4 +37,10 @@
                          add-br sw0.4 sw0 4
                        ";
 
+    services.cron = {
+      enable = true;
+      systemCronJobs = [
+        "* * * * *      root    /data/docker/moodle/moodle-cron.sh"
+      ];
+    };
 }

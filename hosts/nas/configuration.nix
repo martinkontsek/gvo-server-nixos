@@ -41,6 +41,9 @@
     prefixLength = 24;
   } ];
 
-
+  services.nfs.server.enable = true;
+  services.nfs.server.exports = ''
+    /data/docker    *(ro,insecure,sync,no_root_squash)
+  '';
 
 }

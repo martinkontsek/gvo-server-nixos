@@ -98,7 +98,8 @@
     git
     python313
     python313Packages.python-dotenv
-    _7zz    
+    _7zz
+    rclone
   ];
 
   services.lldpd.enable = true;

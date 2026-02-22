@@ -13,6 +13,7 @@
       ../../modules/libvirt.nix
       ../../modules/incus.nix
       ../../modules/zabbix-agent.nix
+      ../../modules/restic-server.nix
     ];
 
   # Bootloader.

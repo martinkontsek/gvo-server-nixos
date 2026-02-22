@@ -126,6 +126,7 @@
   # Open ports in the firewall.
   networking.firewall.allowedTCPPorts = [ 
     2049 # NFSv4
+    8000 # Restic REST Server
   ];
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.

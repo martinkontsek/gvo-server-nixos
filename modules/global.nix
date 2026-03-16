@@ -64,8 +64,6 @@
   environment.systemPackages = with pkgs; [
     mc
     yazi
-    vim
-    neovim
     tmux
     nload
     nmon
@@ -100,6 +98,24 @@
     python313Packages.python-dotenv
     _7zz
     rclone
+    virtnbdbackup
+    ((vim-full.override {  }).customize{
+      name = "vim";
+      # Install plugins for example for syntax highlighting of nix files
+      vimrcConfig.packages.myplugins = with pkgs.vimPlugins; {
+        start = [ vim-nix vim-lastplace ];
+        opt = [];
+      };
+      vimrcConfig.customRC = ''
+        " your custom vimrc
+        set nocompatible
+        set backspace=indent,eol,start
+        " Turn on syntax highlighting by default
+        syntax on
+        set number
+        " ...
+      '';
+    })
   ];
 
   services.lldpd.enable = true;
@@ -109,6 +125,24 @@
 
   # Fix vscode remote ssh
   programs.nix-ld.enable = true;
+
+  programs.bash = {
+    shellAliases = {
+      fr = "nh os boot /home/kontsek/nix-config";
+      frs = "nh os switch /home/kontsek/nix-config";
+      fu = "nh os boot --update /home/kontsek/nix-config";
+      finfo = "nh os info";
+      ncg = "nh clean all";
+    };
+    shellInit = ''
+       compress () { tar cf - -C . "$@" | pigz -7 > "$@"-`date '+%Y%m%d-%H%M%S'`.tar.gz; }
+    '';
+  };
+
+  programs.vim.enable = true;
+  programs.vim.defaultEditor = true;
+  environment.variables = { EDITOR = "vim"; };
+
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.

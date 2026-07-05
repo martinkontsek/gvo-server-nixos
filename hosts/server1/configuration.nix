@@ -13,12 +13,13 @@
       ../../modules/docker.nix
       ../../modules/libvirt.nix
       ../../modules/incus.nix
+      ../../modules/serial-console.nix
       ../../modules/zabbix-agent.nix
     ];
 
   networking.hostName = "server1"; # Define your hostname.
   
-  networking.interfaces.enp5s0.ipv4.addresses = [ {
+  networking.interfaces.eno1.ipv4.addresses = [ {
     address = "10.0.2.254";
     prefixLength = 24;
   } ];
@@ -31,7 +32,7 @@
   } ];
 
   networking.vswitches.sw0.extraOvsctlCmds = "
-                         add-bond sw0 bond0 enp1s0f0np0 enp1s0f1np1 lacp=active
+                         add-bond sw0 bond0 enp4s0f0np0 enp4s0f1np1 lacp=active
                          add-br sw0.2 sw0 2
                          add-br sw0.3 sw0 3
                          add-br sw0.4 sw0 4
@@ -41,6 +42,7 @@
       enable = true;
       systemCronJobs = [
         "* * * * *      root    /data/docker/moodle/moodle-cron.sh"
+        "*/30 * * * *   root    /data/docker/notifier/gvonitor.sh"
       ];
     };
 }

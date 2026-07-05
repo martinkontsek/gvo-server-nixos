@@ -10,7 +10,7 @@
 
   boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "sd_mod" ];
   boot.initrd.kernelModules = [ ];
-  boot.kernelModules = [ "kvm-amd" ];
+  boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
@@ -29,18 +29,8 @@
       fsType = "xfs";
     };
 
-  fileSystems."/media/nvme1T" =
-    { device = "/dev/disk/by-uuid/2a99b7ee-6738-4716-8bd0-a7462dff8a69";
-      fsType = "xfs";
-    };
-
   fileSystems."/media/hdd2T" =
     { device = "/dev/disk/by-uuid/08705904-67a6-421d-b2ec-50b3d58f074b";
-      fsType = "xfs";
-    };
-
-  fileSystems."/media/hdd1T" =
-    { device = "/dev/disk/by-uuid/63a36dba-74fd-421a-9775-5c4af4314b49";
       fsType = "xfs";
     };
 

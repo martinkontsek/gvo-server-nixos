@@ -18,7 +18,7 @@
 
   # Bootloader.
   boot.loader.grub.enable = true;
-  boot.loader.grub.device = "/dev/sdc";
+  boot.loader.grub.device = "/dev/sdd";
   boot.loader.grub.useOSProber = true;
 
   networking.hostName = "nas"; # Define your hostname.

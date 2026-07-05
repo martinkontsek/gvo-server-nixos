@@ -94,8 +94,8 @@
     nh
     duf
     git
-    python313
-    python313Packages.python-dotenv
+    python314
+    python314Packages.python-dotenv
     _7zz
     rclone
     virtnbdbackup

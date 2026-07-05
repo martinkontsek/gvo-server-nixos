@@ -94,7 +94,7 @@
     nh
     duf
     git
-    python314
+    python314Packages.requests
     python314Packages.python-dotenv
     _7zz
     rclone

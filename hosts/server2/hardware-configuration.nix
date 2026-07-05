@@ -34,27 +34,12 @@
       fsType = "xfs";
     };
 
-  fileSystems."/media/hdd1T" =
-    { device = "/dev/disk/by-uuid/44ac7cc9-6b75-410a-86a5-00386a01626e";
-      fsType = "xfs";
-    };
-
   fileSystems."/media/hdd750G" =
     { device = "/dev/disk/by-uuid/77298ab5-ab03-48ae-b26f-fc36f7f8a10b";
       fsType = "xfs";
     };
 
-  fileSystems."/media/ssd1T2" =
-    { device = "/dev/disk/by-uuid/37c04c89-2430-4bd3-8f70-f7164430ade4";
-      fsType = "xfs";
-    };
-
-  fileSystems."/media/ssd250G" =
-    { device = "/dev/disk/by-uuid/ffd79c05-535b-461e-ab42-045f0e0298d6";
-      fsType = "xfs";
-    };
-
-  swapDevices =
+    swapDevices =
     [ { device = "/dev/disk/by-uuid/22943a51-d1f1-4a63-a3da-6e0c8693a165"; }
     ];
 

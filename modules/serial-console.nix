@@ -1,10 +1,6 @@
 { config, pkgs, ... }:
 
 {
-  # Bootloader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-
   # 1. Enable serial console on ttyS0
   systemd.services."serial-getty@ttyS0" = {
     enable = true;

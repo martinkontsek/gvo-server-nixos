@@ -94,8 +94,10 @@
     nh
     duf
     git
-    python314Packages.requests
-    python314Packages.python-dotenv
+    (python314.withPackages (python-pkgs: with python-pkgs; [
+      requests
+      python-dotenv
+    ]))
     _7zz
     rclone
     virtnbdbackup

@@ -8,7 +8,6 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      ../../modules/boot-efi.nix
       ../../modules/global.nix
       ../../modules/docker.nix
       ../../modules/libvirt.nix
@@ -16,6 +15,11 @@
       ../../modules/serial-console.nix
       ../../modules/zabbix-agent.nix
     ];
+
+  # Bootloader.
+  boot.loader.grub.enable = true;
+  boot.loader.grub.device = "/dev/sdf";
+  boot.loader.grub.useOSProber = true;
 
   networking.hostName = "server1"; # Define your hostname.
   
@@ -32,7 +36,7 @@
   } ];
 
   networking.vswitches.sw0.extraOvsctlCmds = "
-                         add-bond sw0 bond0 enp4s0f0np0 enp4s0f1np1 lacp=active
+                         add-bond sw0 bond0 ens2f0 ens2f1 lacp=active
                          add-br sw0.2 sw0 2
                          add-br sw0.3 sw0 3
                          add-br sw0.4 sw0 4
